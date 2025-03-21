@@ -1,0 +1,41 @@
+@page "/register"
+@using System.ComponentModel.DataAnnotations
+
+<EditForm Model="@registrationModel" OnValidSubmit="@HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div>
+        <label for="name">Name:</label>
+        <InputText id="name" @bind-Value="registrationModel.Name" />
+        <ValidationMessage For="@(() => registrationModel.Name)" />
+    </div>
+
+    <div>
+        <label for="email">Email:</label>
+        <InputText id="email" @bind-Value="registrationModel.Email" />
+        <ValidationMessage For="@(() => registrationModel.Email)" />
+    </div>
+
+    <button type="submit">Register</button>
+</EditForm>
+
+@code {
+    private RegistrationModel registrationModel = new RegistrationModel();
+
+    private void HandleValidSubmit()
+    {
+        // Handle successful form submission
+        Console.WriteLine("Form submitted successfully");
+    }
+
+    public class RegistrationModel
+    {
+        [Required(ErrorMessage = "Name is required")]
+        public string Name { get; set; }
+
+        [Required(ErrorMessage = "Email is required")]
+        [EmailAddress(ErrorMessage = "Invalid email address")]
+        public string Email { get; set; }
+    }
+}

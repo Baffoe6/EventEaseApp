@@ -1,0 +1,30 @@
+@page "/event-list"
+
+<h1>Event List</h1>
+<nav>
+    <a href="/event-list">Event List</a>
+    <a href="/event-details">Event Details</a>
+    <a href="/event-registration">Event Registration</a>
+</nav>
+
+<ul>
+    @foreach (var ev in Events)
+    {
+        <li>
+            <h3>@ev.Name</h3>
+            <p>Date: @ev.Date.ToShortDateString()</p>
+            <p>Location: @ev.Location</p>
+            <a href="/event-details?name=@ev.Name">View Details</a>
+        </li>
+    }
+</ul>
+
+@code {
+    private List<Event> Events = new List<Event>
+    {
+        new Event { Name = "Annual Gala Night", Date = DateTime.Now.AddMonths(1), Location = "Downtown Conference Hall", Description = "A grand night of celebration." },
+        new Event { Name = "Tech Expo 2023", Date = DateTime.Now.AddMonths(2), Location = "Tech City Center", Description = "Showcasing the latest in technology." },
+        new Event { Name = "Charity Fun Run", Date = DateTime.Now.AddDays(21), Location = "Riverside Park", Description = "A fun run for a noble cause." }
+    };
+}
+

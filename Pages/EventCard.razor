@@ -1,0 +1,11 @@
+<div class="event-card">
+    <h3>@EventName</h3>
+    <p>Date: @EventDate</p>
+    <p>Location: @EventLocation</p>
+</div>
+
+@code {
+    public string EventName { get; set; } = "Annual Gala Night";
+    public DateTime EventDate { get; set; } = DateTime.Now;
+    public string EventLocation { get; set; } = "Downtown Conference Hall";
+}
